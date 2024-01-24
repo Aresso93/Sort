@@ -1,4 +1,6 @@
-﻿namespace Sort
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace Sort
 
 {
     internal class Program
@@ -7,26 +9,69 @@
         {
             Funzione();
         }
+
+        private static int CountOccurrences(string input)
+        {
+            string[] stringArray = input.Split(' ');
+            //devo contare quante cose mi tornano true e quante false
+            foreach(var occurrence in stringArray)
+            {
+                double stringaParsata;
+                bool parseEseguito = double.TryParse(occurrence, out stringaParsata);
+                if (parseEseguito)
+                {
+                    Console.WriteLine($"Converted '{occurrence}' to {stringaParsata}.");
+                } else
+                {
+                    Console.WriteLine($"Attempted conversion of '{occurrence ?? "<null>"}' failed.");
+                }
+            }
+            return stringArray.Length;  
+        }
+        
         private static double[] Conversione(string input)
         {
             string[] stringArray = input.Split(' ');
-            double[] floatArray = new double[stringArray.Length];
+            string[] rejectsArray = new string[CountOccurrences(input)];
+            double[] doubleArray = new double[stringArray.Length - rejectsArray.Length];
+
             for (int i = 0; i < stringArray.Length; i++)
             {
                 double stringaParsata;
                 bool parseEseguito = double.TryParse(stringArray[i], out stringaParsata);
                 if (parseEseguito)
                 {
-                    Console.WriteLine($"Convertito '{stringArray[i]}' in {stringaParsata}.");
-                    floatArray[i] = stringaParsata;
-                }
-                else
+                    doubleArray[i] = stringaParsata;    
+                    Console.WriteLine(doubleArray[i]);  
+                } else
                 {
-                    Console.WriteLine($"Non sono riuscito a convertire '{stringArray[i] ?? "<null>"}', mi dispiace. Dammi solo numeri separati da spazi.");
+                    rejectsArray[i] = stringArray[i];
+                    Console.WriteLine(rejectsArray[i]);
                 }
-                //floatArray[i] = float.Parse(stringArray[i]);
             }
-            return floatArray;
+
+            return doubleArray; 
+
+            //double[] doubleArray = new double[stringArray.Length];
+            //string[] rejectsArray = new string[stringArray.Length];
+            //for (int i = 0; i < stringArray.Length; i++)
+            //{
+            //    double stringaParsata;
+            //    bool parseEseguito = double.TryParse(stringArray[i], out stringaParsata);
+            //    if (parseEseguito)
+            //    {
+            //        Console.WriteLine($"Stringa convertita: '{stringArray[i]}' in {stringaParsata}.");
+            //        doubleArray[i] = stringaParsata;
+
+            //    }
+            //    else
+            //    {
+            //        rejectsArray[i] = stringArray[i];
+            //        Console.WriteLine("Stringa non convertita: " + rejectsArray[i]);
+            //        doubleArray[i] = stringaParsata;
+            //    }
+            //}
+            //return doubleArray;
         }
         static void Sortaggio(double[] arraySortevole)
         {
