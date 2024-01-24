@@ -12,3 +12,4 @@ C:\Users\fiumicelli\source\repos\Sort\Sort\obj\Debug\net8.0\refint\Sort.dll
 C:\Users\fiumicelli\source\repos\Sort\Sort\obj\Debug\net8.0\Sort.pdb
 C:\Users\fiumicelli\source\repos\Sort\Sort\obj\Debug\net8.0\Sort.genruntimeconfig.cache
 C:\Users\fiumicelli\source\repos\Sort\Sort\obj\Debug\net8.0\ref\Sort.dll
+C:\Users\fiumicelli\source\repos\Sort\Sort\obj\Debug\net8.0\Sort.sourcelink.json
