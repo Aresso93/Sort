@@ -1,26 +1,36 @@
-﻿namespace Sort
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace Sort
 
 {
     internal class Program
     {
-        private static float[] Conversione(string input)
+        private static int[] Conversione(string input)
         {
             string[] stringArray = input.Split(' ');
-            float[] floatArray = new float[stringArray.Length];
+            int[] floatArray = new int[stringArray.Length];
 
             for (int i = 0; i < stringArray.Length; i++)
             {
-                floatArray[i] = float.Parse(stringArray[i]);
-            }
-            //if (floatArray.Length != 10)
-            //{
-            //    throw new ArithmeticException("10 numeri, per cortesia. Né più né meno!");
-            //} 
-            return floatArray;
+                int stringaParsata;
+                bool parseEseguito = int.TryParse(stringArray[i], out stringaParsata);
+                if (parseEseguito)
+                {
+                    Console.WriteLine($"Convertito '{stringArray[i]}' in {stringaParsata}.");
+                    floatArray[i] = stringaParsata;
 
+                }
+                else
+                {
+                    Console.WriteLine($"Non sono riuscito a convertire '{stringArray[i] ?? "<null>"}', mi dispiace.");
+                }
+                //floatArray[i] = float.Parse(stringArray[i]);
+            }
+           
+            return floatArray;
             
         }
-        static void Sortaggio(float[] arraySortevole)
+        static void Sortaggio(int[] arraySortevole)
         {
             Console.WriteLine("Eccoli sortati!");
 
@@ -30,7 +40,7 @@
                 {
                     if (arraySortevole[i] > arraySortevole[j])
                     {
-                        float sortevole = arraySortevole[j];
+                        int sortevole = arraySortevole[j];
                         arraySortevole[j] = arraySortevole[i];
                         arraySortevole[i] = sortevole;
                     }
