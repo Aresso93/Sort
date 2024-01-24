@@ -21,6 +21,8 @@ namespace Sort
                 if (parseEseguito)
                 {
                     Console.WriteLine($"Converted '{occurrence}' to {stringaParsata}.");
+                    Console.WriteLine(parseEseguito);
+                    
                 } else
                 {
                     Console.WriteLine($"Attempted conversion of '{occurrence ?? "<null>"}' failed.");
