@@ -12,14 +12,13 @@
             {
                 floatArray[i] = float.Parse(stringArray[i]);
             }
-            if (floatArray.Length != 10)
-            {
-                throw new ArithmeticException("10 numeri, per cortesia. Né più né meno!");
-            } else
-            {
+            //if (floatArray.Length != 10)
+            //{
+            //    throw new ArithmeticException("10 numeri, per cortesia. Né più né meno!");
+            //} 
             return floatArray;
 
-            }
+            
         }
         static void Sortaggio(float[] arraySortevole)
         {
@@ -44,9 +43,8 @@
             Console.WriteLine("Dammi 10 numeri (positivi o negativi) separati da spazi");
                 string input = Console.ReadLine();
                 var floatArray = Conversione(input.Replace(".", ","));
-            try
-            {
-                
+            /*try
+            {*/
                 Console.WriteLine("Paolo, hai digitato questi numeri: ");
                 for (int i = 0; i < floatArray.Length; i++)
                 {
@@ -54,11 +52,11 @@
                 }
                 Console.WriteLine("Adesso te li riordino!");
                 Sortaggio(floatArray);
-            }
+           /* }
            catch (Exception)
             {
                 Console.WriteLine("ERRORE FATALISSIMO!! Paolo, non mi rompere l'applicazione. Soltanto numeri, per favore");
-            }
+            }*/
         }
         static void Main(string[] args)
         {
