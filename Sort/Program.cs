@@ -14,6 +14,8 @@ namespace Sort
         {
             string[] stringArray = input.Split(' ');
             //devo contare quante cose mi tornano true e quante false
+                int numberOfFalses = 0;
+                int numberOfTrues = 0;
             foreach(var occurrence in stringArray)
             {
                 double stringaParsata;
@@ -22,13 +24,15 @@ namespace Sort
                 {
                     Console.WriteLine($"Converted '{occurrence}' to {stringaParsata}.");
                     Console.WriteLine(parseEseguito);
-                    
+                    numberOfTrues++;
                 } else
                 {
                     Console.WriteLine($"Attempted conversion of '{occurrence ?? "<null>"}' failed.");
+                    numberOfFalses ++;
                 }
             }
-            return stringArray.Length;  
+            Console.WriteLine("Numero falsità: " + numberOfFalses);
+            return (numberOfFalses);
         }
         
         private static double[] Conversione(string input)
