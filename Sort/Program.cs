@@ -5,15 +5,15 @@ namespace Sort
 {
     internal class Program
     {
-        private static int[] Conversione(string input)
+        private static double[] Conversione(string input)
         {
             string[] stringArray = input.Split(' ');
-            int[] floatArray = new int[stringArray.Length];
+            double[] floatArray = new double[stringArray.Length];
 
             for (int i = 0; i < stringArray.Length; i++)
             {
-                int stringaParsata;
-                bool parseEseguito = int.TryParse(stringArray[i], out stringaParsata);
+                double stringaParsata;
+                bool parseEseguito = double.TryParse(stringArray[i], out stringaParsata);
                 if (parseEseguito)
                 {
                     Console.WriteLine($"Convertito '{stringArray[i]}' in {stringaParsata}.");
@@ -30,7 +30,7 @@ namespace Sort
             return floatArray;
             
         }
-        static void Sortaggio(int[] arraySortevole)
+        static void Sortaggio(double[] arraySortevole)
         {
             Console.WriteLine("Eccoli sortati!");
 
@@ -40,7 +40,7 @@ namespace Sort
                 {
                     if (arraySortevole[i] > arraySortevole[j])
                     {
-                        int sortevole = arraySortevole[j];
+                        double sortevole = arraySortevole[j];
                         arraySortevole[j] = arraySortevole[i];
                         arraySortevole[i] = sortevole;
                     }
