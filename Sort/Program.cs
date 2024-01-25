@@ -38,7 +38,6 @@ namespace Sort
             }
             return occorrenze;
         }
-
             private static double[] Conversione(string input)
             {
             int stringSize = ContaStringhe(input);
@@ -56,15 +55,13 @@ namespace Sort
                 {
                     doubleArray[indexNumber] = stringaParsata;
                     indexNumber++;
-                    //Console.WriteLine("Stringa parsata correttamente: " + doubleArray[indexNumber]);
-
+                    Console.WriteLine("Stringa parsata correttamente: " + doubleArray[indexNumber-1]);
                 } else
                 {
                     rejectsArray[indexString] = stringaDaParsare;
                     indexString++;
-                    Console.WriteLine("Stringa non parsata");
-                }
-                 
+                    Console.WriteLine("Stringa non parsata: " + rejectsArray[indexString-1]);
+                } 
             }
 
             return doubleArray; 
