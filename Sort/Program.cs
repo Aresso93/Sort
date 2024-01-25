@@ -1,5 +1,6 @@
-﻿namespace Sort
+﻿using System.Linq.Expressions;
 
+namespace Sort
 {
     internal class Program
     {
@@ -7,7 +8,6 @@
         {
             Funzione();
         }
-
         private static int ContaNumeri(string input)
         {
             string[] stringArray = input.Split(' ');
@@ -21,7 +21,7 @@
                     occorrenze++;
                 } 
             }
-            Console.WriteLine("Numero di numeri " + occorrenze);
+            
             return occorrenze;
         }
         private static int ContaStringhe(string input)
@@ -30,38 +30,43 @@
             int occorrenze = 0;
             foreach (var occurrence in stringArray)
             {
-                double stringaParsata;
-                bool parsabile = double.TryParse(occurrence, out stringaParsata);
+                bool parsabile = double.TryParse(occurrence, out double stringaParsata);
                 if (!parsabile)
                 {
                     occorrenze++;
                 }
             }
-            Console.WriteLine("Numero di stringhe " + occorrenze);
             return occorrenze;
         }
 
-        private static double[] Conversione(string input)
-        {
-            string[] stringArray = input.Split(' ');
-            string[] rejectsArray = new string[ContaStringhe(input)];
-            double[] doubleArray = new double[ContaNumeri(input)];
-
-            for (int i = 0; i < doubleArray.Length; i++)
+            private static double[] Conversione(string input)
             {
-                double stringaParsata;
-                bool parsabile = double.TryParse(stringArray[i], out stringaParsata);
+            int stringSize = ContaStringhe(input);
+            int intSize = ContaNumeri(input);   
+            string[] rejectsArray = new string[stringSize];
+            double[] doubleArray = new double[intSize];
+            string[] stringArray = input.Split(' ');
+            int indexNumber = 0;
+            int indexString = 0;
+            for (int i = 0; i < stringArray.Length; i++)
+            {
+                string stringaDaParsare = stringArray[i];
+                bool parsabile = double.TryParse(stringaDaParsare, out double stringaParsata);
                 if (parsabile)
                 {
-                    doubleArray[i] = stringaParsata;    
-                    Console.WriteLine(doubleArray[i]);  
+                    doubleArray[indexNumber] = stringaParsata;
+                    indexNumber++;
+                    //Console.WriteLine("Stringa parsata correttamente: " + doubleArray[indexNumber]);
+
                 } else
                 {
-                    
-                    Console.WriteLine("AAAA");
+                    rejectsArray[indexString] = stringaDaParsare;
+                    indexString++;
+                    Console.WriteLine("Stringa non parsata");
                 }
+                 
             }
-            
+
             return doubleArray; 
         }
         static void Sortaggio(double[] arraySortevole)
@@ -87,8 +92,8 @@
             Console.WriteLine("Dammi 10 numeri (positivi o negativi) separati da spazi");
                 string input = Console.ReadLine()!;
                 var floatArray = Conversione(input.Replace(".", ","));
-            try
-            { 
+            //try
+            //{ 
                 Console.WriteLine("Paolo, hai digitato questi numeri: ");
                 for (int i = 0; i < floatArray.Length; i++)
                 {
@@ -96,11 +101,11 @@
                 }
                 Console.WriteLine("Adesso te li riordino!");
                 Sortaggio(floatArray);
-           }
-           catch (Exception)
-            {
-                Console.WriteLine("ERRORE FATALISSIMO!! Paolo, non mi rompere l'applicazione. Soltanto numeri, per favore");
-            }
+           //}
+           //catch (Exception)
+           // {
+           //     Console.WriteLine("ERRORE FATALISSIMO!! Paolo, non mi rompere l'applicazione. Soltanto numeri, per favore");
+           // }
         }
        
     }
