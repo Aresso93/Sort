@@ -1,6 +1,4 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace Sort
+﻿namespace Sort
 
 {
     internal class Program
@@ -10,74 +8,61 @@ namespace Sort
             Funzione();
         }
 
-        private static int CountOccurrences(string input)
+        private static int ContaNumeri(string input)
         {
             string[] stringArray = input.Split(' ');
-            //devo contare quante cose mi tornano true e quante false
-                int numberOfFalses = 0;
-                int numberOfTrues = 0;
+            int occorrenze = 0;
             foreach(var occurrence in stringArray)
             {
                 double stringaParsata;
-                bool parseEseguito = double.TryParse(occurrence, out stringaParsata);
-                if (parseEseguito)
+                bool parsabile = double.TryParse(occurrence, out stringaParsata);
+                if (parsabile)
                 {
-                    Console.WriteLine($"Converted '{occurrence}' to {stringaParsata}.");
-                    Console.WriteLine(parseEseguito);
-                    numberOfTrues++;
-                } else
+                    occorrenze++;
+                } 
+            }
+            Console.WriteLine("Numero di numeri " + occorrenze);
+            return occorrenze;
+        }
+        private static int ContaStringhe(string input)
+        {
+            string[] stringArray = input.Split(' ');
+            int occorrenze = 0;
+            foreach (var occurrence in stringArray)
+            {
+                double stringaParsata;
+                bool parsabile = double.TryParse(occurrence, out stringaParsata);
+                if (!parsabile)
                 {
-                    Console.WriteLine($"Attempted conversion of '{occurrence ?? "<null>"}' failed.");
-                    numberOfFalses ++;
+                    occorrenze++;
                 }
             }
-            Console.WriteLine("Numero falsità: " + numberOfFalses);
-            return (numberOfFalses);
+            Console.WriteLine("Numero di stringhe " + occorrenze);
+            return occorrenze;
         }
-        
+
         private static double[] Conversione(string input)
         {
             string[] stringArray = input.Split(' ');
-            string[] rejectsArray = new string[CountOccurrences(input)];
-            double[] doubleArray = new double[stringArray.Length - rejectsArray.Length];
+            string[] rejectsArray = new string[ContaStringhe(input)];
+            double[] doubleArray = new double[ContaNumeri(input)];
 
-            for (int i = 0; i < stringArray.Length; i++)
+            for (int i = 0; i < doubleArray.Length; i++)
             {
                 double stringaParsata;
-                bool parseEseguito = double.TryParse(stringArray[i], out stringaParsata);
-                if (parseEseguito)
+                bool parsabile = double.TryParse(stringArray[i], out stringaParsata);
+                if (parsabile)
                 {
                     doubleArray[i] = stringaParsata;    
                     Console.WriteLine(doubleArray[i]);  
                 } else
                 {
-                    rejectsArray[i] = stringArray[i];
-                    Console.WriteLine(rejectsArray[i]);
+                    
+                    Console.WriteLine("AAAA");
                 }
             }
-
+            
             return doubleArray; 
-
-            //double[] doubleArray = new double[stringArray.Length];
-            //string[] rejectsArray = new string[stringArray.Length];
-            //for (int i = 0; i < stringArray.Length; i++)
-            //{
-            //    double stringaParsata;
-            //    bool parseEseguito = double.TryParse(stringArray[i], out stringaParsata);
-            //    if (parseEseguito)
-            //    {
-            //        Console.WriteLine($"Stringa convertita: '{stringArray[i]}' in {stringaParsata}.");
-            //        doubleArray[i] = stringaParsata;
-
-            //    }
-            //    else
-            //    {
-            //        rejectsArray[i] = stringArray[i];
-            //        Console.WriteLine("Stringa non convertita: " + rejectsArray[i]);
-            //        doubleArray[i] = stringaParsata;
-            //    }
-            //}
-            //return doubleArray;
         }
         static void Sortaggio(double[] arraySortevole)
         {
