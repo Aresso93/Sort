@@ -63,7 +63,6 @@ namespace Sort
                     Console.WriteLine("Stringa non parsata: " + rejectsArray[indexString-1]);
                 } 
             }
-
             return doubleArray; 
         }
         static void Sortaggio(double[] arraySortevole)
